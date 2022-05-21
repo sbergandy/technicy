@@ -1,0 +1,23 @@
+<html>
+<body>
+<div th:each="technik : ${technicy}">
+    <h1 th:text="${technik.imie}"></h1>
+    <ul th:each="zadanie : ${technik.zadania}">
+        <li th:text="${zadanie.nazwa}"></li>
+        <form action="#" th:action="@{'/usun-zadanie?technik={technik}&nazwa={nazwa}'(nazwa=${zadanie.nazwa},technik=${technik.imie})}" method="post">
+            <button type="submit">Usuń</button>
+        </form>
+    </ul>
+</div>
+
+
+    <form action="#" th:action="@{/dodaj-zadanie}" th:object="${dodajZadanie}" method="post">
+    <label for="nazwaTechnika">Nazwa technika</label>
+    <input type="text" th:field="*{nazwaTechnika}" id="nazwaTechnika" placeholder="Nazwa technika">
+    <input type="text" th:field="*{zadanie}" id="zadanie" placeholder="Zadanie">
+    <input type="submit" value="Dodaj zadanie">
+    <input type="reset" value="Wyczyść">
+</form>
+
+</body>
+</html>
